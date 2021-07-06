@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<style>
+    .ssk {
+        top: 15px;
+    }
+    
+    .a-login {
+        float: right;
+        margin-top: 15px;
+    }
+</style>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>{$headConf['title']}</title>
+    <!--描述和摘要-->
+    <meta name="Description" content="" />
+    <meta name="Keywords" content="" />
+    <!--载入公共模板-->
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/org/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+    <script src="__STATIC__/index/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__STATIC__/index/org/bootstrap-3.3.5-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/backTop.css" />
+    <link rel='stylesheet' id='style-css' href='__STATIC__/index/css\1_style.css' type='text/css' media='all' />
+</head>
+
+<body class="bg">
+    <!--导航-->
+    <nav class="navbar navbar-inverse ">
+        <div class="container-fluid ">
+            <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1 ">
+                <h4 style="display: inline;line-height: 50px;float: left;margin: 0px "><a href="{:url('index/home/index')}" style="color: white;margin-left: -14px ">学码博客网</a>
+                </h4>
+                <div class="navbar-header ">
+                    <ul class="nav navbar-nav ">
+                        <li>
+                            <a href="http://www.kancloud.cn/manual/thinkphp5/118003 " target="_blank "><i class="fa fa-w fa-file-code-o "></i>
+                            在线文档</a>
+                        </li>
+                        <li>
+                            <a href="http://fontawesome.dashgame.com/ " target="_blank "><i
+                                class="fa fa-w fa-hand-o-right "></i> 图标库</a>
+                        </li>
+                        <li>
+                            <a href="{:url('index/About/index')}" target="_blank "><i class="fa fa-w fa-forumbee "></i> 关于我</a>
+                        </li>
+                        <li>
+                            <a href="{:url('index/Message/index')}" target="_blank "><i class="fa fa-w fa-forumbee "></i>留言板</a>
+                        </li>
+                        <li class="ssk">
+                            <form action="{:url('index/home/selectArt')}" method="GET">
+                                <input type="text" name="keyWords" class="input_words" value="{$Request.param.keywords}" placeholder="搜索文章">
+                                <input type="submit" class="search_submit" value="搜索">
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+
+                {if{:session('index.index_name')==''}
+                <a href="{:url('index/login/index')} " class="dropdown-toggle a-login " data-toggle="dropdown " role="button ">
+                    <!-- <i class="fa fa-w fa-user "></i>请登录 -->
+
+                    请登录</a>
+                {else({:session('index.index_name')!=''})}
+                <ul class="nav navbar-nav navbar-right " }>
+                    <li class="dropdown ">
+                        <a href="# " class="dropdown-toggle " data-toggle="dropdown " role="button ">
+                            <i class="fa fa-w fa-user "></i> {:session('index.index_name')}
+                            <span class="caret "></span>
+                        </a>
+                        <ul class="dropdown-menu ">
+                            <li><a href="{:url( 'index/home/pass')} ">修改用户信息</a></li>
+                            <li role="separator " class="divider "></li>
+                            <li><a href="{:url( 'index/login/exit')} ">退出</a></li>
+                            <li role="separator " class="divider "></li>
+                            <li><a href="{:url( 'index/user/index')} ">个人中心</a></li>
+                        </ul>
+                    </li>
+                    {/if}
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!--导航end-->
+    <header>
+        <div class="container ">
+            <div class="row ">
+                <div class="col-sm-12 ">
+                    <h1>{$_webset['title']}</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav role="navigation " class="navbar navbar-default ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-sm-12 ">
+
+                    <div class="navbar-header ">
+
+                        <button type="button " class="navbar-toggle " data-toggle="collapse " data-target="#example-navbar-collapse ">
+							
+								<span class="sr-only ">切换导航</span>
+								
+								<span class="icon-bar "></span>
+								<span class="icon-bar "></span>
+								<span class="icon-bar "></span>
+							</button>
+                    </div>
+
+
+                    <div class="collapse navbar-collapse " id="example-navbar-collapse ">
+                        <ul class="_menu ">
+                            <li {if condition="!input( 'param.') " }class="_active " {/if}><a href="{:url( 'index/home/index')} ">首页</a></li>
+                            {foreach name='_cateData' item='vo'}
+                            <li {if condition="input( 'param.cate_id')==$vo[ 'cate_id'] " }class="_active " {/if}><a href="{:url( 'index/lists/index',[ 'cate_id'=>$vo['cate_id']])}">{$vo['cate_name']}</a>
+                            </li>
+                            {/foreach}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="container">
+            <div class="row">
+                <!--标签规定文档的主要内容main-->
+                <main class="col-md-8">
+                    {block name='content'}{/block}
+                </main>
+                <aside class="col-md-4 hidden-sm hidden-xs">
+                    <div class="_widget">
+                        <h4>关于学码</h4>
+                        <div class="_info">
+                            <p>
+
+                            </p>
+                            <p>前行的路充满未知，不努力尝试，永远都不知道有多精彩。</p>
+                        </div>
+                    </div>
+                    <div class="_widget">
+                        <h4>分类列表</h4>
+                        <div>
+                            {foreach name='_allCateData' item='vo'}
+                            <a href="{:url('index/lists/index',['cate_id'=>$vo['cate_id']])}">{$vo['cate_name']}</a> {/foreach}
+                        </div>
+                    </div>
+                    <div class="_widget">
+                        <h4>标签云</h4>
+                        <div class="_tag">
+                            {foreach name='_tagData' item='vo'}
+                            <a href="{:url('index/lists/index',['tag_id'=>$vo['tag_id']])}">{$vo['tag_name']}</a> {/foreach}
+
+                        </div>
+                    </div>
+                    <div class="_widget">
+                        <h4>热门文章</h4>
+                        <div class="_tag">
+                            {foreach name='_artHotData' item='vo'}
+                            <a href="{:url('index/content/index',['arc_id'=>$vo['arc_id']])}">{$vo['arc_title']}</a> {/foreach}
+
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+        </div>
+    </section>
+    <footer class="hidden-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4 class="_title">最新文章</h4>
+                    {foreach name='_artData' item='vo'}
+                    <div id="" class="_single">
+                        <p><a href="{:url('index/content/index',['arc_id'=>$vo['arc_id']])}">{$vo['arc_title']}</a></p>
+                        <time>{:date('Y年m月d日',$vo['sendtime'])}</time>
+                    </div>
+                    {/foreach}
+                </div>
+                <div class="col-sm-4 footer_tag">
+                    <div id="">
+                        <h4 class="_title">标签云</h4>
+                        {foreach name='_tagData' item='vo'}
+                        <a href="{:url('index/lists/index',['tag_id'=>$vo['tag_id']])}">{$vo['tag_name']}</a> {/foreach}
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <h4 class="_title">友情链接</h4>
+                    <div id="" class="_single">
+                        {foreach name='_linkData' item='vo'}
+                        <p><a href="{$vo['link_url']}" target="_blank">{$vo['link_name']}</a></p>
+                        {/foreach}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="footer_bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="">{$_webset['title']}</a> |
+                    <a href="">{$_webset['copyTight']}</a> |
+                    <a href="">{$_webset['email']}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--返回顶部自己写的插件-->
+    <script src="__STATIC__/index/js/backTop.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function() {
+            //插件使用
+            $('.back_top').backTop({
+                right: 30
+            });
+        })
+    </script>
+    <div class="back_top hidden-xs hidden-md">
+        <i class="glyphicon glyphicon-menu-up"></i>
+    </div>
+</body>
+<script>
+    $(function() {
+            $(".dropdown").mouseover(function() {
+                $(this).children("ul").show();
+            })
+
+        })
+        // 关键二：正确使用jQuey的语法完成行为。
+    $(function() {
+        $(".dropdown").mouseout(function() {
+            $(this).children("ul").hide();
+        })
+
+    })
+</script>
+
+</html>

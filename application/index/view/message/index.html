@@ -1,0 +1,43 @@
+{extend name='base'/} {block name='content'}
+<div class="comt">
+
+    <div class="comt-box">
+        <form action="{:url('index/Message/addMes')}" method="POST">
+            <textarea placeholder="写点什么..." class="input-block-level comt-area" name="user_comment" id="comment" cols="100%" rows="3" tabindex="1"></textarea>
+            <div class="comt-ctrl">
+                <input type="hidden" name="usercomment_id">
+                <input type="hidden" name="user_id" value="{:session('index.index_id')}">
+                <input type="hidden" name="user_name" value="{:session('index.index_name')}">
+                <button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5">
+         发表留言
+        </button>
+            </div>
+        </form>
+    </div>
+    </form>
+
+</div>
+
+<div id="postcomments">
+    <div id="comments">
+        留言列表
+    </div>
+
+    <ol class="commentlist">
+        {foreach name='mesData' item='vo'}
+        <li class="comment even thread-even depth-1" id="comment-33438">
+            <div class="c-avatar">
+                <div class="c-main" id="div-comment-33438">{$vo['user_comment']}
+                    <div class="c-meta">
+                        <span class="c-author">{$vo['user_name']}<p></p></span>{:date('Y-m-d',$vo['commenttime'])}
+                    </div>
+                </div>
+            </div>
+        </li>
+        {/foreach}
+        <div class="pagination pagination-sm pull-right">
+            {$mesData->render()}
+        </div>
+    </ol>
+
+</div>{/block}

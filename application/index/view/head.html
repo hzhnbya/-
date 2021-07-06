@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<style>
+    .ssk {
+        top: 15px;
+    }
+</style>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>{$headConf['title']}</title>
+    <!--描述和摘要-->
+    <meta name="Description" content="" />
+    <meta name="Keywords" content="" />
+    <!--载入公共模板-->
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/org/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+    <script src="__STATIC__/index/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__STATIC__/index/org/bootstrap-3.3.5-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/backTop.css" />
+    <link rel='stylesheet' id='style-css' href='__STATIC__/index/css\1_style.css' type='text/css' media='all' />
+</head>
+
+<body class="bg">
+    <!--导航-->
+    <nav class="navbar navbar-inverse ">
+        <div class="container-fluid ">
+            <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1 ">
+                <h4 style="display: inline;line-height: 50px;float: left;margin: 0px "><a href="{:url('index/home/index')}" style="color: white;margin-left: -14px ">学码博客网</a>
+                </h4>
+                <div class="navbar-header ">
+                    <ul class="nav navbar-nav ">
+                        <li>
+                            <a href="http://www.kancloud.cn/manual/thinkphp5/118003 " target="_blank "><i class="fa fa-w fa-file-code-o "></i>
+                            在线文档</a>
+                        </li>
+                        <li>
+                            <a href="http://fontawesome.dashgame.com/ " target="_blank "><i
+                                class="fa fa-w fa-hand-o-right "></i> 图标库</a>
+                        </li>
+                        <li>
+                            <a href="{:url('index/About/index')}" target="_blank "><i class="fa fa-w fa-forumbee "></i> 关于我</a>
+                        </li>
+                        <li>
+                            <a href="{:url('index/Message/index')}" target="_blank "><i class="fa fa-w fa-forumbee "></i>留言板</a>
+                        </li>
+                        <li class="ssk">
+                            <form action="{:url('index/home/selectArt')}" method="GET">
+                                <input type="text" name="keyWords" class="input_words" value="{$Request.param.keywords}" placeholder="搜索文章">
+                                <input type="submit" class="search_submit" value="搜索">
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <ul class="nav navbar-nav navbar-right ">
+                    <li class="dropdown ">
+                        <a href="# " class="dropdown-toggle " data-toggle="dropdown " role="button ">
+                            <i class="fa fa-w fa-user "></i> {:session('index.index_name')}
+                            <span class="caret "></span>
+                        </a> 
+                        <ul class="dropdown-menu ">
+                            <li><a href="{:url('index/home/pass')} ">修改密码信息</a></li>
+                            <li role="separator " class="divider "></li>
+                            <li><a href="{:url('index/login/index')}">退出</a></li>
+                            <li role="separator " class="divider "></li>
+                            <li><a href="{:url('index/user/index')}">个人中心</a></li>
+                        </ul>
+                    </li>
+                </ul> -->
+            </div>
+        </div>
+    </nav>
+    {block name='head'}{/block}
